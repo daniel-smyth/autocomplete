@@ -3,7 +3,7 @@
 #include <map>
 #include <vector>
 
-// Alphabetically compare output trie search
+// Alphabetically compare output
 bool compareFunction(std::pair<std::string, int> a, std::pair<std::string, int> b)
 {
     return a.first < b.first;
