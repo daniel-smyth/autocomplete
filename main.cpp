@@ -2,15 +2,14 @@
 #include <map>
 #include <vector>
 
-class Node
+struct Node
 {
-public:
-    char character; // This node's character
-    int counter;
+    char character;
+    bool isEnd;  // This node/character is at the end of a word
+    int counter; // Records instances of this word in trie
     std::map<const char, Node *> children;
-    bool isEnd;
 
-    Node(char c) : character(c), counter(0), isEnd(false) {}
+    Node(char c) : character(c), isEnd(false), counter(0) {}
 };
 
 class Trie
@@ -18,7 +17,7 @@ class Trie
     Node rootNode;
 
 public:
-    std::vector<std::string> output;
+    std::vector<std::pair<std::string, int>> output;
 
     Trie() : rootNode('\0') {}
 
@@ -26,20 +25,24 @@ public:
     {
         Node *node = &rootNode;
 
+        // Loop each character of word
         for (std::basic_string<char>::size_type i = 0; i < word.length(); i++)
         {
             char c = word[i];
             if (node->children.count(c) > 0)
             {
+                // If child node with this character exists, reassign pointer to child node
                 node = node->children.at(c);
             }
             else
             {
+                // If no child node with this character does not exist, create new node and reassign pointer
                 node->children.insert(std::make_pair(c, new Node(c)));
                 node = node->children.at(c);
             }
         }
 
+        // End of word. Increment counter
         node->isEnd = true;
         node->counter += 1;
     }
@@ -48,35 +51,40 @@ public:
     {
         if (node->isEnd == true)
         {
-            output.push_back(prefix + node->character);
+            // Reached end of word, add word to output
+            output.push_back(std::pair<std::string, int>(prefix + node->character, node->counter));
         }
 
+        // Loop child nodes of current nodes
         std::map<const char, Node *>::iterator it;
         for (it = node->children.begin(); it != node->children.end(); it++)
         {
+            // Move down to next node level with new prefix and child node's character
             dfs(it->second, prefix + node->character);
         }
     }
 
-    std::vector<std::string> query(std::string x)
+    std::vector<std::pair<std::string, int>> query(std::string query)
     {
         Node *node = &rootNode;
 
-        for (std::basic_string<char>::size_type i = 0; i < x.length(); i++)
+        for (std::basic_string<char>::size_type i = 0; i < query.length(); i++)
         {
-            char c = x[i];
+            // Check if the current query exists is in the trie
+            char c = query[i];
             if (node->children.count(c) > 0)
             {
                 node = node->children.at(c);
             }
             else
             {
+                // Word doesn't exist, return empty output
                 return output;
             }
         }
 
-        x.pop_back();
-        dfs(node, x);
+        query.pop_back();
+        dfs(node, query);
 
         return output;
     }
@@ -84,7 +92,6 @@ public:
 
 int main()
 {
-    std::cout << "Autocomplete" << std::endl;
 
     Trie t = Trie();
 
@@ -95,9 +102,14 @@ int main()
     t.insert("where");
     t.insert("apple");
 
-    std::vector<std::string> output = t.query("wh");
+    std::vector<std::pair<std::string, int>> output = t.query("wh");
 
-    std::vector<std::string>::iterator it = output.begin();
-    for (it = output.begin(); it < output.end(); it++)
-        std::cout << *it << std::endl;
+    std::cout << "\nResult:" << std::endl;
+
+    for (std::vector<std::pair<std::string, int>>::size_type i = 0; i < output.size(); i++)
+    {
+        std::cout << output[i].first << ", " << output[i].second << std::endl;
+    }
+
+    std::cout << "" << std::endl;
 }
