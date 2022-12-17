@@ -1,6 +1,13 @@
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <vector>
+
+// Alphabetically compare output trie search
+bool compareFunction(std::pair<std::string, int> a, std::pair<std::string, int> b)
+{
+    return a.first < b.first;
+};
 
 struct Node
 {
@@ -83,8 +90,11 @@ public:
             }
         }
 
+        // Traverse the trie to get all candidates
         query.pop_back();
         dfs(node, query);
+
+        std::sort(output.begin(), output.end(), compareFunction); // sort the vector
 
         return output;
     }
@@ -92,15 +102,19 @@ public:
 
 int main()
 {
-
     Trie t = Trie();
 
-    t.insert("was");
-    t.insert("word");
-    t.insert("war");
-    t.insert("what");
-    t.insert("where");
-    t.insert("apple");
+    std::ifstream file;
+    file.open("words.txt");
+
+    if (file.is_open())
+    {
+        std::string word;
+        while (file >> word)
+        {
+            t.insert(word);
+        }
+    }
 
     std::vector<std::pair<std::string, int>> output = t.query("wh");
 
