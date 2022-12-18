@@ -2,16 +2,16 @@ import Head from 'next/head';
 import { ChangeEvent, useState } from 'react';
 
 export default function Home() {
-  const [query, setQuery] = useState('');
-  const [result, setResult] = useState(['']);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [results, setResults] = useState(['']);
   const [error, setError] = useState('');
 
   const handleInput = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length < query.length) {
+    if (e.target.value.length < searchQuery.length) {
       setError('');
     }
 
-    setQuery(e.target.value);
+    setSearchQuery(e.target.value);
 
     let r = await fetch(`http://localhost:1984/${e.target.value}`, {
       method: 'get'
@@ -19,11 +19,14 @@ export default function Home() {
 
     try {
       let data = await r.json();
-      setResult(data);
+      setResults(data);
       setError('');
     } catch {
-      setResult(['']);
-      if (e.target.value.length > 0 || e.target.value.length < query.length) {
+      setResults(['']);
+      if (
+        e.target.value.length > 0 ||
+        e.target.value.length < searchQuery.length
+      ) {
         setError('No matches');
       }
     }
@@ -36,9 +39,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <input type="text" value={query} onChange={handleInput} />
+        <input type="text" value={searchQuery} onChange={handleInput} />
         {error.length > 0 && <p>{error}</p>}
-        {result.map((result, i) => (
+        {results.map((result, i) => (
           <div key={result + i}>
             <p> {result[0]}</p>
           </div>
