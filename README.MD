@@ -2,101 +2,57 @@
 
 ## Description
 
-My C++ RESTful server with autocomplete implemented in C++.
-Client with Next.js.
-
-Instant autocomplete results from a list of 1,000,000 words.
+Instant autocomplete results from a list of 1,000,000 words written in C++. 
+RESTful C++ server with lightweight TypeScript client. 
+Trie traversal for autocomplete logic.
 
 **URL:** todo
 
-## Getting Started
-
-Building the server.
-
-## CMake to Build Project
-
-CMake is required to build the project.
-
-If you are using OS X and Homebrew, just type
-
-```bash
-brew install cmake
-```
-
-If using windows download [cmake for Windows](https://cmake.org/download/#latest).
-
-## nlohmann/json for JSON Serialization
-
-If you are using OS X and Homebrew, just type
-
-```bash
-brew install nlohmann-json
-```
-
-If you are using vcpkg on your project for external dependencies, then you can install the nlohmann-json package with:
-
-```bash
-vcpkg install nlohmann-json
-```
-
-Then follow the then displayed descriptions. Please see the vcpkg project for any issues regarding the packaging.
-
-## restbed for HTTP client
-
-Restbed is a RESTful framework for C++.
-
-```bash
-mkdir lib
-cd lib
-git clone --recursive https://github.com/corvusoft/restbed.git
-mkdir restbed/build
-cd restbed/build
-cmake [-DBUILD_SSL=NO] [-DBUILD_TESTS=NO] ..
-make install
-make test
-```
-
-## Running the Server
-
-Navigate back to root and compile the project via make file.
-
-```bash
-make
-```
-
-Run the project with the restbed library flag.
-
-```bash
-LD_LIBRARY_PATH="${PWD}/lib/restbed/distribution/library" ./bin/server
-```
-
-You're server is now running!
-
-```console
-Hey! The service is up and running.
-```
-
-```bash
-curl -w'\n' -v -X GET 'http://localhost:1984/resource/Da'
-```
-
-# Autocomplete Client
-
-## Getting Started
-
-Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser.
-
 ## Autocomplete Logic
 
-The autocomplete trie.
+The trie and node data structure.
+
+```c++
+// A node in the trie structure
+struct Node
+{
+    // The character stored in this node
+    char character;
+    // Whether this character can be the end of a word
+    bool isEnd;
+    // A counter indicating how many times a word is inserted
+    int counter;
+    // dictionary of child nodes keys are characters, values are nodes
+    std::map<const char, Node *> children;
+
+    // Initiate with character
+    Node(char c);
+};
+
+class Trie
+{
+    // The trie has at least the root node. This has no character
+    Node rootNode;
+    //  Array of matching words
+    std::vector<std::pair<std::string, int>> output;
+
+    // Depth-first traversal of the trie
+    void dfs(Node *node, std::string prefix);
+
+public:
+    Trie();
+
+    // Insert a word into the trie
+    void insert(std::string word);
+
+    // Given an input (a prefix), retrieve all words stored in
+    // the trie with that prefix, sort the words by the number of
+    // times they have been inserted
+    std::vector<std::pair<std::string, int>> query(std::string query);
+};
+```
+
+Trie logic.
 
 ```c++
 // A node of the data trie
@@ -189,3 +145,89 @@ vector<pair<string, int>> Trie::query(string word)
     return output;
 }
 ```
+
+## Getting Started
+
+Building the server.
+
+## CMake to Build Project
+
+CMake is required to build the project.
+
+If you are using OS X and Homebrew, just type
+
+```bash
+brew install cmake
+```
+
+If using windows download [cmake for Windows](https://cmake.org/download/#latest).
+
+## nlohmann/json for JSON Serialization
+
+If you are using OS X and Homebrew, just type
+
+```bash
+brew install nlohmann-json
+```
+
+If you are using vcpkg on your project for external dependencies, then you can install the nlohmann-json package with:
+
+```bash
+vcpkg install nlohmann-json
+```
+
+Then follow the then displayed descriptions. Please see the vcpkg project for any issues regarding the packaging.
+
+## restbed for HTTP client
+
+Restbed is a RESTful framework for C++.
+
+```bash
+mkdir lib
+cd lib
+git clone --recursive https://github.com/corvusoft/restbed.git
+mkdir restbed/build
+cd restbed/build
+cmake [-DBUILD_SSL=NO] [-DBUILD_TESTS=NO] ..
+make install
+make test
+```
+
+## Running the Server
+
+Navigate back to root and compile the project via make file.
+
+```bash
+make
+```
+
+Run the project with the restbed library flag.
+
+```bash
+LD_LIBRARY_PATH="${PWD}/lib/restbed/distribution/library" ./bin/server
+```
+
+You're server is now running!
+
+```console
+Hey! The service is up and running.
+```
+
+```bash
+curl -w'\n' -v -X GET 'http://localhost:1984/resource/Da'
+```
+
+# Autocomplete Client
+
+## Getting Started
+
+Run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser.
+
