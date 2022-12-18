@@ -14,9 +14,29 @@ Building the server.
 
 CMake is required to build the project.
 
+If you are using OS X and Homebrew, just type
+
 ```bash
 brew install cmake
 ```
+
+If using windows download [cmake for Windows](https://cmake.org/download/#latest).
+
+## Install nlohmann/json
+
+If you are using OS X and Homebrew, just type
+
+```bash
+brew install nlohmann-json
+```
+
+If you are using vcpkg on your project for external dependencies, then you can install the nlohmann-json package with:
+
+```bash
+vcpkg install nlohmann-json
+```
+
+Then follow the then displayed descriptions. Please see the vcpkg project for any issues regarding the packaging.
 
 ## Install restbed
 
@@ -46,7 +66,7 @@ make
 Run the project with the restbed library flag.
 
 ```bash
-LD_LIBRARY_PATH="/Users/user/Documents/Github/autocomplete/lib/restbed/distribution/library" ./bin/server
+LD_LIBRARY_PATH="${PWD}/lib/restbed/distribution/library" ./bin/server
 ```
 
 You're server is now running!

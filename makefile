@@ -1,12 +1,19 @@
+MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+MKFILE_DIR := $(dir $(MKFILE_PATH))
+
 ifndef RESTBED_MODULES_PATH
-export RESTBED_MODULES_PATH=/Users/user/Documents/Github/autocomplete/lib/restbed
+export RESTBED_MODULES_PATH=$(MKFILE_DIR)/lib/restbed
 endif
 
-INCLUDE = -I"$(RESTBED_MODULES_PATH)/distribution/include/"
+ifndef NLOHMANN_MODULES_PATH
+export NLOHMANN_MODULES_PATH=/usr/local/Cellar/nlohmann-json/3.11.2
+endif
+
+INCLUDE =  -I"$(NLOHMANN_MODULES_PATH)/include" -I"$(RESTBED_MODULES_PATH)/distribution/include/"
 LIBRARIES = -L"$(RESTBED_MODULES_PATH)/distribution/library" -lrestbed
 
 CC=gcc
-CXX=g++ -Wno-unused-result -std=c++11 -std=c++14 -Weverything
+CXX=g++ -Wno-unused-result -std=c++11 -std=c++14 -Wno-c++98-compat -Wno-c++98-compat-pedantic -Weverything
 RM=rm -f
 
 SRC_DIR := src
@@ -39,36 +46,3 @@ clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
 -include $(OBJ:.o=.d)
-
-# ifndef RESTBED_MODULES_PATH
-# export RESTBED_MODULES_PATH=/Users/user/Documents/Github/autocomplete/lib/restbed
-# endif
-
-# INCLUDE = -I"$(RESTBED_MODULES_PATH)/distribution/include/" 
-# LIBRARIES = -L"$(RESTBED_MODULES_PATH)/distribution/library" -lrestbed
-
-# CC=gcc
-# CXX=g++ -Wno-unused-result -std=c++11 -std=c++14 -Weverything
-# RM=rm -f
-# CPPFLAGS=-c -Wall
-# LDFLAGS=-g $(INCLUDE)
-# LDLIBS=-g $(LIBRARIES)
-
-# SRC_DIR := src
-# OBJ_DIR := obj
-# BIN_DIR := bin
-
-# SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
-# OBJECTS=$(SOURCES:.cpp=.o)
-# EXECUTABLE=server
-
-# all: $(SOURCES) $(EXECUTABLE)
-
-# $(EXECUTABLE): $(OBJECTS)
-# 	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@ $(LDLIBS)
-
-# .cpp.o:
-# 	$(CXX) $(LDFLAGS) $(CPPFLAGS) $< -o $@ $(LDLIBS)
-
-# clean:
-# 	$(RM) $(OBJECTS) $(EXECUTABLE)

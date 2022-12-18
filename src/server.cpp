@@ -1,4 +1,5 @@
 #include "autocomplete.h"
+#include <nlohmann/json.hpp>
 #include <thread>
 #include <memory>
 #include <chrono>
@@ -7,20 +8,18 @@
 
 using namespace std;
 using namespace restbed;
+using json = nlohmann::json;
 
-Trie t = Trie();
+const int PORT = 1984;
+Trie AUTOCOMPLETE_TREE = Trie();
 
 void get_method_handler(const shared_ptr<Session> session)
 {
     const auto &request = session->get_request();
     const string query = request->get_path_parameter("name");
-    vector<pair<string, int>> output = t.query(query);
+    json result = AUTOCOMPLETE_TREE.query(query);
 
-    for (pair<string, int> i : output)
-        cout << "i = " << i.first << endl;
-
-    const string body = "Hello, " + request->get_path_parameter("name");
-    session->close(OK, body, {{"Content-Length", ::to_string(body.size())}});
+    session->close(OK, result.dump(), {{"Content-Length", ::to_string(result.dump().size())}});
 }
 
 void service_ready_handler(Service &)
@@ -34,21 +33,21 @@ void service_ready_handler(Service &)
         std::string word;
         while (file >> word)
         {
-            t.insert(word);
+            AUTOCOMPLETE_TREE.insert(word);
         }
     }
 
-    fprintf(stderr, "Hey! The service is up and running.");
+    fprintf(stderr, "\nServer up.");
 }
 
 int main(const int, const char **)
 {
     auto resource = make_shared<Resource>();
-    resource->set_path("/resource/{name: .*}");
+    resource->set_path("/{name: .*}");
     resource->set_method_handler("GET", get_method_handler);
 
     auto settings = make_shared<Settings>();
-    settings->set_port(1984);
+    settings->set_port(PORT);
     settings->set_default_header("Connection", "close");
 
     auto service = make_shared<Service>();
