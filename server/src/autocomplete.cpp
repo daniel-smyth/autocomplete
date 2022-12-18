@@ -88,6 +88,9 @@ vector<pair<string, int>> Trie::query(string word)
 
     // sort the output
     sort(output.begin(), output.end(), compareFunction);
+    vector<pair<string, int>> reducedSize(output.begin(), output.begin() + 10);
 
-    return output;
+    output.clear();
+
+    return reducedSize;
 }

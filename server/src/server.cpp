@@ -21,7 +21,15 @@ void get_method_handler(const shared_ptr<Session> session)
     const string query = request->get_path_parameter("name");
     json result = AUTOCOMPLETE_TREE.query(query);
 
-    session->close(OK, result.dump(), {{"Content-Length", ::to_string(result.dump().size())}});
+    if (result.size() > 0)
+    {
+        session->close(OK, result.dump(), {{"Content-Length", ::to_string(result.dump().size())}});
+    }
+    else
+    {
+        string emptyResponse = "";
+        session->close(OK, emptyResponse, {{"Content-Length", ::to_string(emptyResponse.size())}});
+    }
 }
 
 void service_ready_handler(Service &)
@@ -51,6 +59,7 @@ int main(const int, const char **)
     auto settings = make_shared<Settings>();
     settings->set_port(PORT);
     settings->set_default_header("Connection", "close");
+    settings->set_default_header("Access-Control-Allow-Origin", "*");
 
     auto service = make_shared<Service>();
     service->publish(resource);

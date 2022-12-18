@@ -81,6 +81,27 @@ Make a request.
 curl -w'\n' -v -X GET 'http://localhost:1984/resource/Da'
 ```
 
+# Autocomplete Client
+
+## Getting Started
+
+Run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
 ## Autocomplete Logic
 
 The autocomplete trie.
@@ -176,24 +197,3 @@ vector<pair<string, int>> Trie::query(string word)
     return output;
 }
 ```
-
-# Autocomplete Client
-
-## Getting Started
-
-Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
