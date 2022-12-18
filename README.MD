@@ -5,7 +5,7 @@
 My C++ RESTful server with autocomplete implemented in C++.
 Client with Next.js.
 
-Instant autocomplete results from a list of 1,000,000 word.
+Instant autocomplete results from a list of 1,000,000 words.
 
 **URL:** todo
 
