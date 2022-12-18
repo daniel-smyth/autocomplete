@@ -41,7 +41,7 @@ vcpkg install nlohmann-json
 
 Then follow the then displayed descriptions. Please see the vcpkg project for any issues regarding the packaging.
 
-## Install restbed
+## restbed for HTTP client
 
 Restbed is a RESTful framework for C++.
 
