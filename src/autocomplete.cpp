@@ -1,6 +1,4 @@
-#include "../include/autocomplete.h"
-#include <fstream>
-#include <iostream>
+#include "autocomplete.h"
 
 using namespace std;
 
