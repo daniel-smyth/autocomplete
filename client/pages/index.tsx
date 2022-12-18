@@ -6,7 +6,7 @@ export default function Home() {
   const [result, setResult] = useState(['']);
   const [error, setError] = useState('');
 
-  const onType = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInput = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length < query.length) {
       setError('');
     }
@@ -36,7 +36,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <input type="text" value={query} onChange={onType} />
+        <input type="text" value={query} onChange={handleInput} />
         {error.length > 0 && <p>{error}</p>}
         {result.map((result, i) => (
           <div key={result + i}>
