@@ -43,7 +43,7 @@ make
 
 ## Run Server
 
-Navigate back to root and compile the project via make file.
+Run the project with the restbed library flag.
 
 ```bash
 LD_LIBRARY_PATH="/Users/user/Documents/Github/autocomplete/lib/restbed/distribution/library" ./bin/server
@@ -53,6 +53,12 @@ You're server is now running!
 
 ```console
 Hey! The service is up and running.
+```
+
+Make a request.
+
+```bash
+curl -w'\n' -v -X GET 'http://localhost:1984/resource/Da'
 ```
 
 ## Autocomplete Logic
