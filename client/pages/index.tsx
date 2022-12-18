@@ -23,10 +23,7 @@ export default function Home() {
       setError('');
     } catch {
       setResults(['']);
-      if (
-        e.target.value.length > 0 ||
-        e.target.value.length < searchQuery.length
-      ) {
+      if (e.target.value.length > 0) {
         setError('No matches');
       }
     }
