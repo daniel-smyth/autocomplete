@@ -23,7 +23,7 @@ struct Node
     // A counter indicating how many times a word is inserted
     int counter;
     // dictionary of child nodes keys are characters, values are nodes
-    std::map<const char, Node *> children;
+    map<const char, Node *> children;
 
     // Initiate with character
     Node(char c);
@@ -34,34 +34,27 @@ class Trie
     // The trie has at least the root node. This has no character
     Node rootNode;
     //  Array of matching words
-    std::vector<std::pair<std::string, int>> output;
+    vector<pair<string, int>> output;
 
     // Depth-first traversal of the trie
-    void dfs(Node *node, std::string prefix);
+    void dfs(Node *node, string prefix);
 
 public:
     Trie();
 
     // Insert a word into the trie
-    void insert(std::string word);
+    void insert(string word);
 
     // Given an input (a prefix), retrieve all words stored in
     // the trie with that prefix, sort the words by the number of
     // times they have been inserted
-    std::vector<std::pair<std::string, int>> query(std::string query);
+    vector<pair<string, int>> query(query);
 };
 ```
 
 Trie logic.
 
 ```c++
-// A node of the data trie
-Node::Node(char c) : character(c), isEnd(false), counter(0) {}
-
-// The trie has at least the root node.
-// The root node does not store any character
-Trie::Trie() : rootNode('\0') {}
-
 // Insert a word data into the trie
 void Trie::insert(string word)
 {
