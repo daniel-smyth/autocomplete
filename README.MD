@@ -35,7 +35,7 @@ class Trie
     // The trie has at least the root node. This has no character
     Node rootNode;
     
-    //  Array of matching words
+    // The output - an array of matching words
     vector<pair<string, int>> output;
 
 public:
