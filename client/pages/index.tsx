@@ -18,8 +18,8 @@ export default function Home() {
     });
 
     try {
-      let data = await r.json();
-      setResults(data);
+      let apiResult = await r.json();
+      setResults(apiResult);
       setError('');
     } catch {
       setResults(['']);
