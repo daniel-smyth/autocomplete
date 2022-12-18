@@ -4,9 +4,13 @@ import { ChangeEvent, useState } from 'react';
 export default function Home() {
   const [query, setQuery] = useState('');
   const [result, setResult] = useState(['']);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState('');
 
   const onType = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length < query.length) {
+      setError('');
+    }
+
     setQuery(e.target.value);
 
     let r = await fetch(`http://localhost:1984/${e.target.value}`, {
@@ -16,12 +20,11 @@ export default function Home() {
     try {
       let data = await r.json();
       setResult(data);
+      setError('');
     } catch {
       setResult(['']);
-      if (e.target.value.length > 0) {
-        setErrorMessage('No matches');
-      } else {
-        setErrorMessage('');
+      if (e.target.value.length > 0 || e.target.value.length < query.length) {
+        setError('No matches');
       }
     }
   };
@@ -34,7 +37,7 @@ export default function Home() {
       </Head>
       <main>
         <input type="text" value={query} onChange={onType} />
-        {errorMessage.length > 0 && <p>{errorMessage}</p>}
+        {error.length > 0 && <p>{error}</p>}
         {result.map((result, i) => (
           <div key={result + i}>
             <p> {result[0]}</p>

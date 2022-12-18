@@ -2,15 +2,18 @@
 
 ## Description
 
-C++ RESTful server with trie traversal logic for an autocomplete search.
+My C++ RESTful server with autocomplete implemented in C++.
+Client with Next.js.
+
+Instant autocomplete results from a list of 1,000,000 word.
 
 **URL:** todo
 
-## Get started
+## Getting Started
 
 Building the server.
 
-## Install CMake
+## CMake to Build Project
 
 CMake is required to build the project.
 
@@ -22,7 +25,7 @@ brew install cmake
 
 If using windows download [cmake for Windows](https://cmake.org/download/#latest).
 
-## Install nlohmann/json
+## nlohmann/json for JSON Serialization
 
 If you are using OS X and Homebrew, just type
 
@@ -53,15 +56,13 @@ make install
 make test
 ```
 
-## Compile
+## Running the Server
 
 Navigate back to root and compile the project via make file.
 
 ```bash
 make
 ```
-
-## Run Server
 
 Run the project with the restbed library flag.
 
@@ -74,8 +75,6 @@ You're server is now running!
 ```console
 Hey! The service is up and running.
 ```
-
-Make a request.
 
 ```bash
 curl -w'\n' -v -X GET 'http://localhost:1984/resource/Da'
@@ -94,13 +93,6 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 ## Autocomplete Logic
 
