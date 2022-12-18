@@ -22,7 +22,7 @@ struct Node
     int counter;
 
     // dictionary of child nodes keys are characters, values are nodes
-    std::map<const char, Node *> children;
+    map<const char, Node *> children;
 
     // Initiate with character
     Node(char c);
