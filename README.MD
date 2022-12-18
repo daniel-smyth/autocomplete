@@ -2,7 +2,7 @@
 
 ## Description
 
-Instant autocomplete results from a list of 1,000,000 words written in C++. Includes RESTful C++ API to serve the autocomplete logic. Lightweight browser client written in TypeScript client. Trie traversal for autocomplete logic. 
+Instant autocomplete results from a list of 1,000,000 words written in C++. Includes RESTful C++ API to serve the autocomplete logic. Lightweight browser client written in TypeScript. Trie traversal for autocomplete logic. 
 
 **URL:** todo
 
