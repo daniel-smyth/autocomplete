@@ -4,6 +4,8 @@
 #include <memory>
 #include <chrono>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 #include <restbed>
 
 using namespace std;

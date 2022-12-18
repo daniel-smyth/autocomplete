@@ -4,7 +4,8 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/lib/restbed/distribution/include"
+                "${workspaceFolder}/server/include",
+                "${workspaceFolder}/server/lib/restbed/distribution/include"
             ],
             "defines": [],
             "macFrameworkPath": [

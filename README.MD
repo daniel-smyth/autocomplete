@@ -86,14 +86,14 @@ curl -w'\n' -v -X GET 'http://localhost:1984/resource/Da'
 The autocomplete trie.
 
 ```c++
-#include "autocomplete.h"
-
-using namespace std;
-
+// A node of the data trie
 Node::Node(char c) : character(c), isEnd(false), counter(0) {}
 
+// The trie has at least the root node.
+// The root node does not store any character
 Trie::Trie() : rootNode('\0') {}
 
+// Insert a word data into the trie
 void Trie::insert(string word)
 {
     Node *node = &rootNode;
@@ -120,6 +120,7 @@ void Trie::insert(string word)
     node->counter += 1;
 }
 
+// Depth-first traversal of the trie
 void Trie::dfs(Node *node, string prefix)
 {
     if (node->isEnd == true)
@@ -137,19 +138,23 @@ void Trie::dfs(Node *node, string prefix)
     }
 }
 
+// Alphabetically sort the output of a trie query
 bool compareFunction(pair<string, int> a, pair<string, int> b)
 {
     return a.first < b.first;
 };
 
-vector<pair<string, int>> Trie::query(string query)
+// Given an input (a prefix), retrieve all words stored in
+// the trie with that prefix, sort the words by the number of
+// times they have been inserted
+vector<pair<string, int>> Trie::query(string word)
 {
     Node *node = &rootNode;
 
-    for (basic_string<char>::size_type i = 0; i < query.length(); i++)
+    for (basic_string<char>::size_type i = 0; i < word.length(); i++)
     {
         // Check if the current query exists is in the trie
-        char c = query[i];
+        char c = word[i];
         if (node->children.count(c) > 0)
         {
             node = node->children.at(c);
@@ -162,10 +167,11 @@ vector<pair<string, int>> Trie::query(string query)
     }
 
     // Traverse the trie to get all candidates
-    query.pop_back();
-    dfs(node, query);
+    word.pop_back();
+    dfs(node, word);
 
-    sort(output.begin(), output.end(), compareFunction); // sort the vector
+    // sort the output
+    sort(output.begin(), output.end(), compareFunction);
 
     return output;
 }

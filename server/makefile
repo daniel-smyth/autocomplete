@@ -46,3 +46,42 @@ clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
 -include $(OBJ:.o=.d)
+
+# PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+# DIR := $(dir $(PATH))
+
+# CC=gcc
+# CXX=g++ -Wno-unused-result -std=c++11 -std=c++14 -Weverything
+# RM=rm -f
+
+# EXE := bin/server
+# SRC := $(wildcard src/*.cpp)
+# OBJ := $(SRC:src/%.cpp=obj/%.o)
+
+# NLOHMANN_PATH=/usr/local/Cellar/nlohmann-json/3.11.2
+# REST_PATH=$(DIR)/lib/restbed
+
+# INC = -I"$(NLOHMANN_PATH)/include" -I"$(REST_PATH)"
+# LIB = -L"$(REST_PATH)/distribution/library" -lrestbed
+# CPPFLAGS := -Iinclude $(INC) -MMD -MP
+# CFLAGS   := -Wall
+# LDFLAGS  := -Llib
+# LDLIBS   := -lm $(LIB)
+
+# .PHONY: all clean
+
+# all: $(EXE)
+
+# $(EXE): $(OBJ) | $(BIN_DIR)
+# 	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+# 	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+# $(BIN_DIR) $(OBJ_DIR):
+# 	mkdir -p $@
+
+# clean:
+# 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
+
+# -include $(OBJ:.o=.d)
