@@ -1,0 +1,8 @@
+/Users/user/Documents/Github/autocomplete/server/CMakeFiles/restbed.dir
+/Users/user/Documents/Github/autocomplete/server/CMakeFiles/restq.dir
+/Users/user/Documents/Github/autocomplete/server/CMakeFiles/edit_cache.dir
+/Users/user/Documents/Github/autocomplete/server/CMakeFiles/rebuild_cache.dir
+/Users/user/Documents/Github/autocomplete/server/CMakeFiles/list_install_components.dir
+/Users/user/Documents/Github/autocomplete/server/CMakeFiles/install.dir
+/Users/user/Documents/Github/autocomplete/server/CMakeFiles/install/local.dir
+/Users/user/Documents/Github/autocomplete/server/CMakeFiles/install/strip.dir
