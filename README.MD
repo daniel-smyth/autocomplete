@@ -2,7 +2,7 @@
 
 ## Description
 
-Instant autocomplete results from a list of 1,000,000 words written in C++. Includes RESTful C++ API to serve the autocomplete logic. Lightweight browser client written in TypeScript. Trie traversal for autocomplete logic. 
+Instant autocomplete results from a list of 1,000,000 words written in C++. Includes RESTful C++ API to serve the autocomplete logic. Lightweight browser client written in TypeScript. Trie traversal for autocomplete logic.
 
 **URL:** todo
 
@@ -32,7 +32,7 @@ class Trie
 {
     // The trie has at least the root node. This has no character
     Node rootNode;
-    
+
     // The output - an array of matching words
     vector<pair<string, int>> output;
 
@@ -143,7 +143,7 @@ vector<pair<string, int>> Trie::query(string word)
 
 Building the server.
 
-## CMake to Build Project
+## Build Server
 
 CMake is required to build the project.
 
@@ -153,58 +153,35 @@ If you are using OS X and Homebrew, just type
 brew install cmake
 ```
 
-If using windows download [cmake for Windows](https://cmake.org/download/#latest).
+If using Windows, [cmake for Windows](https://cmake.org/download/#latest).
 
-## nlohmann/json for JSON Serialization
-
-If you are using OS X and Homebrew, just type
+Navigate to the `/server` directory and build the project via `CMakeLists.txt` file.
 
 ```bash
-brew install nlohmann-json
+cmake .
 ```
 
-If you are using vcpkg on your project for external dependencies, then you can install the nlohmann-json package with:
-
-```bash
-vcpkg install nlohmann-json
-```
-
-Then follow the then displayed descriptions. Please see the vcpkg project for any issues regarding the packaging.
-
-## restbed for HTTP client
-
-Restbed is a RESTful framework for C++.
-
-```bash
-mkdir lib
-cd lib
-git clone --recursive https://github.com/corvusoft/restbed.git
-mkdir restbed/build
-cd restbed/build
-cmake [-DBUILD_SSL=NO] [-DBUILD_TESTS=NO] ..
-make install
-make test
-```
-
-## Running the Server
-
-Navigate back to root and compile the project via make file.
+Once built, compile the project.
 
 ```bash
 make
 ```
 
-Run the project with the restbed library flag.
+## Running the Server
+
+Run the project via the build result.
 
 ```bash
-LD_LIBRARY_PATH="${PWD}/lib/restbed/distribution/library" ./bin/server
+./build/server
 ```
 
 You're server is now running!
 
 ```console
-Hey! The service is up and running.
+Server up.
 ```
+
+Make a request to the server.
 
 ```bash
 curl -w'\n' -v -X GET 'http://localhost:1984/resource/Da'
@@ -223,4 +200,3 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
-
