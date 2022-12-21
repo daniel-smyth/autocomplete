@@ -1,3 +1,15 @@
-[submodule "server/dependency/json"]
-	path = server/dependency/json
-	url = https://github.com/nlohmann/json.git
+[submodule "dependency/restbed"]
+	path = dependency/restbed
+	url = https://github.com/corvusoft/restbed
+[submodule "dependency/catch"]
+	path = dependency/catch
+	url = https://github.com/corvusoft/catch-dependency
+[submodule "dependency/md5"]
+	path = dependency/md5
+	url = https://github.com/corvusoft/md5-dependency
+[submodule "dependency/json"]
+	path = dependency/json
+	url = https://github.com/Corvusoft/json-dependency
+[submodule "dependency/load"]
+	path = dependency/load
+	url = https://github.com/Corvusoft/mem-cpu-load-dependency
