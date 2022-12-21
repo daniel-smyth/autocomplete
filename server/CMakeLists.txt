@@ -34,7 +34,8 @@ find_package( asio REQUIRED )
 find_package( load REQUIRED )
 find_package( restbed REQUIRED )
 find_package( kashmir REQUIRED )
-find_package( json REQUIRED )
+find_package( json REQUIRED)
+
 
 include_directories( SYSTEM ${md5_INCLUDE} ${asio_INCLUDE} ${load_INCLUDE} ${restbed_INCLUDE} ${kashmir_INCLUDE} ${json_INCLUDE} )
 
@@ -85,3 +86,27 @@ install( FILES ${ARTIFACTS} DESTINATION "include/corvusoft/${PROJECT_NAME}" )
 install( TARGETS ${PROJECT_NAME}
          LIBRARY DESTINATION "library"
          ARCHIVE DESTINATION "library" COMPONENT library )
+
+#
+# Configuration
+#
+set( EXECUTABLE_OUTPUT_PATH "${CMAKE_CURRENT_BINARY_DIR}/build" )
+
+include_directories( SYSTEM ${json_INCLUDE} ${restq_INCLUDE} )
+
+#
+# Build
+#
+add_executable( exchange source/autocomplete.cpp
+                         source/server.cpp )
+
+if ( BUILD_SSL )
+    target_link_libraries( exchange ${CMAKE_PROJECT_NAME} ${ssl_LIBRARY} ${crypto_LIBRARY} )
+else ( )
+    target_link_libraries( exchange ${CMAKE_PROJECT_NAME} )
+endif ( )
+
+#
+# Install
+#
+install( DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" DESTINATION ${CMAKE_INSTALL_PREFIX} FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE )

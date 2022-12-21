@@ -1,4 +1,4 @@
-#include "autocomplete.hpp"
+#include "server.hpp"
 #include <thread>
 #include <memory>
 #include <chrono>
@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <restbed>
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 
 using namespace std;
 using namespace restbed;

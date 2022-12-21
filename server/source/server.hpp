@@ -10,7 +10,8 @@
 #include <memory>
 
 // Project Includes
+#include "autocomplete.hpp"
 
 // External Includes
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 #endif /* _JSON_FORMATTER_H */

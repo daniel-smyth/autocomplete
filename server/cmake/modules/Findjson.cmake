@@ -1,6 +1,6 @@
 # Copyright 2014-2016, Corvusoft Ltd, All Rights Reserved.
 
-find_path( json_INCLUDE json.hpp HINTS "${CMAKE_SOURCE_DIR}/dependency/json/include/nlohmann" "/usr/include/" "/usr/local/include/" "/opt/local/include/" )
+find_path( json_INCLUDE nlohmann HINTS "${CMAKE_SOURCE_DIR}/dependency/nlohmanjson/include" "/usr/include/" "/usr/local/include/" "/opt/local/include/" )
 
 if ( json_INCLUDE )
     set( json_FOUND TRUE )
