@@ -2,12 +2,12 @@
 
 cmake_minimum_required( VERSION 2.8.10 )
 
-project( "restq" )
-set( restq_VERSION_MAJOR 1 )
-set( restq_VERSION_MINOR 5.0 )
-set( restq_VERSION ${restq_VERSION_MAJOR}.${restq_VERSION_MINOR} )
-set( PACKAGE_VERSION ${restq_VERSION} )
-set( VERSION "${restq_VERSION}" )
+project( "autocomplete" )
+set( autocomplete_VERSION_MAJOR 1 )
+set( autocomplete_VERSION_MINOR 5.0 )
+set( autocomplete_VERSION ${autocomplete_VERSION_MAJOR}.${autocomplete_VERSION_MINOR} )
+set( PACKAGE_VERSION ${autocomplete_VERSION} )
+set( VERSION "${autocomplete_VERSION}" )
 
 #
 # Build Options
@@ -97,13 +97,13 @@ include_directories( SYSTEM ${json_INCLUDE} ${restq_INCLUDE} )
 #
 # Build
 #
-add_executable( exchange source/autocomplete.cpp
+add_executable( server source/autocomplete.cpp
                          source/server.cpp )
 
 if ( BUILD_SSL )
-    target_link_libraries( exchange ${CMAKE_PROJECT_NAME} ${ssl_LIBRARY} ${crypto_LIBRARY} )
+    target_link_libraries( server ${CMAKE_PROJECT_NAME} ${ssl_LIBRARY} ${crypto_LIBRARY} )
 else ( )
-    target_link_libraries( exchange ${CMAKE_PROJECT_NAME} )
+    target_link_libraries( server ${CMAKE_PROJECT_NAME} )
 endif ( )
 
 #
