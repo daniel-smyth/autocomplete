@@ -6,6 +6,8 @@ Instant autocomplete results from a list of 1,000,000 words written in C++. Incl
 
 **URL:** todo
 
+![autocomplete](https://media.giphy.com/media/1rvLZHdtUa7FvqHsYn/giphy.gif)
+
 ## Autocomplete Logic
 
 The trie and node data structure.
