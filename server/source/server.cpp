@@ -12,10 +12,9 @@ using namespace std;
 using namespace restbed;
 using json = nlohmann::json;
 
-const int PORT = 1984;
 Trie AUTOCOMPLETE_TREE = Trie();
 
-void get_method_handler(const shared_ptr<Session> session)
+void get_autocomplete_results(const shared_ptr<Session> session)
 {
     const auto &request = session->get_request();
     const string query = request->get_path_parameter("name");
@@ -32,9 +31,8 @@ void get_method_handler(const shared_ptr<Session> session)
     }
 }
 
-void service_ready_handler(Service &)
+void on_startup(Service &)
 {
-
     std::ifstream file;
     file.open("words.txt");
 
@@ -47,23 +45,23 @@ void service_ready_handler(Service &)
         }
     }
 
-    fprintf(stderr, "\nServer up.");
+    fprintf(stderr, "\nServer up: http://localhost:1984");
 }
 
 int main(const int, const char **)
 {
     auto resource = make_shared<Resource>();
     resource->set_path("/{name: .*}");
-    resource->set_method_handler("GET", get_method_handler);
+    resource->set_method_handler("GET", get_autocomplete_results);
 
     auto settings = make_shared<Settings>();
-    settings->set_port(PORT);
+    settings->set_port(1984);
     settings->set_default_header("Connection", "close");
     settings->set_default_header("Access-Control-Allow-Origin", "*");
 
     auto service = make_shared<Service>();
     service->publish(resource);
-    service->set_ready_handler(service_ready_handler);
+    service->set_ready_handler(on_startup);
     service->start(settings);
 
     return EXIT_SUCCESS;
