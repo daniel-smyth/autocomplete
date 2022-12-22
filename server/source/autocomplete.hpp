@@ -40,7 +40,7 @@ public:
     // Given an input (a prefix), retrieve all words stored in
     // the trie with that prefix, sort the words by the number of
     // times they have been inserted
-    std::vector<std::pair<std::string, int>> query(std::string query);
+    std::vector<std::pair<std::string, int>> query(std::string query, int outputSize);
 };
 
 #endif

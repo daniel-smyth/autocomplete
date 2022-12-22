@@ -175,37 +175,37 @@ restbed/fast:
 .PHONY : restbed/fast
 
 #=============================================================================
-# Target rules for targets named restq
+# Target rules for targets named autocomplete
 
 # Build rule for target.
-restq: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 restq
-.PHONY : restq
+autocomplete: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 autocomplete
+.PHONY : autocomplete
 
 # fast build rule for target.
-restq/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/build
-.PHONY : restq/fast
+autocomplete/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/build
+.PHONY : autocomplete/fast
 
 #=============================================================================
-# Target rules for targets named exchange
+# Target rules for targets named server
 
 # Build rule for target.
-exchange: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 exchange
-.PHONY : exchange
+server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
+.PHONY : server
 
 # fast build rule for target.
-exchange/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange.dir/build.make CMakeFiles/exchange.dir/build
-.PHONY : exchange/fast
+server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+.PHONY : server/fast
 
 dependency/load/osx/cpu.o: dependency/load/osx/cpu.cc.o
 .PHONY : dependency/load/osx/cpu.o
 
 # target to build an object file
 dependency/load/osx/cpu.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/dependency/load/osx/cpu.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/dependency/load/osx/cpu.cc.o
 .PHONY : dependency/load/osx/cpu.cc.o
 
 dependency/load/osx/cpu.i: dependency/load/osx/cpu.cc.i
@@ -213,7 +213,7 @@ dependency/load/osx/cpu.i: dependency/load/osx/cpu.cc.i
 
 # target to preprocess a source file
 dependency/load/osx/cpu.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/dependency/load/osx/cpu.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/dependency/load/osx/cpu.cc.i
 .PHONY : dependency/load/osx/cpu.cc.i
 
 dependency/load/osx/cpu.s: dependency/load/osx/cpu.cc.s
@@ -221,7 +221,7 @@ dependency/load/osx/cpu.s: dependency/load/osx/cpu.cc.s
 
 # target to generate assembly for a file
 dependency/load/osx/cpu.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/dependency/load/osx/cpu.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/dependency/load/osx/cpu.cc.s
 .PHONY : dependency/load/osx/cpu.cc.s
 
 dependency/load/osx/memory.o: dependency/load/osx/memory.cc.o
@@ -229,7 +229,7 @@ dependency/load/osx/memory.o: dependency/load/osx/memory.cc.o
 
 # target to build an object file
 dependency/load/osx/memory.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/dependency/load/osx/memory.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/dependency/load/osx/memory.cc.o
 .PHONY : dependency/load/osx/memory.cc.o
 
 dependency/load/osx/memory.i: dependency/load/osx/memory.cc.i
@@ -237,7 +237,7 @@ dependency/load/osx/memory.i: dependency/load/osx/memory.cc.i
 
 # target to preprocess a source file
 dependency/load/osx/memory.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/dependency/load/osx/memory.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/dependency/load/osx/memory.cc.i
 .PHONY : dependency/load/osx/memory.cc.i
 
 dependency/load/osx/memory.s: dependency/load/osx/memory.cc.s
@@ -245,7 +245,7 @@ dependency/load/osx/memory.s: dependency/load/osx/memory.cc.s
 
 # target to generate assembly for a file
 dependency/load/osx/memory.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/dependency/load/osx/memory.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/dependency/load/osx/memory.cc.s
 .PHONY : dependency/load/osx/memory.cc.s
 
 dependency/restbed/source/corvusoft/restbed/detail/http_impl.o: dependency/restbed/source/corvusoft/restbed/detail/http_impl.cpp.o
@@ -733,8 +733,8 @@ source/autocomplete.o: source/autocomplete.cpp.o
 
 # target to build an object file
 source/autocomplete.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/source/autocomplete.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange.dir/build.make CMakeFiles/exchange.dir/source/autocomplete.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/source/autocomplete.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/source/autocomplete.cpp.o
 .PHONY : source/autocomplete.cpp.o
 
 source/autocomplete.i: source/autocomplete.cpp.i
@@ -742,8 +742,8 @@ source/autocomplete.i: source/autocomplete.cpp.i
 
 # target to preprocess a source file
 source/autocomplete.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/source/autocomplete.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange.dir/build.make CMakeFiles/exchange.dir/source/autocomplete.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/source/autocomplete.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/source/autocomplete.cpp.i
 .PHONY : source/autocomplete.cpp.i
 
 source/autocomplete.s: source/autocomplete.cpp.s
@@ -751,8 +751,8 @@ source/autocomplete.s: source/autocomplete.cpp.s
 
 # target to generate assembly for a file
 source/autocomplete.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/source/autocomplete.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange.dir/build.make CMakeFiles/exchange.dir/source/autocomplete.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/source/autocomplete.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/source/autocomplete.cpp.s
 .PHONY : source/autocomplete.cpp.s
 
 source/server.o: source/server.cpp.o
@@ -760,8 +760,8 @@ source/server.o: source/server.cpp.o
 
 # target to build an object file
 source/server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/source/server.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange.dir/build.make CMakeFiles/exchange.dir/source/server.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/source/server.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/source/server.cpp.o
 .PHONY : source/server.cpp.o
 
 source/server.i: source/server.cpp.i
@@ -769,8 +769,8 @@ source/server.i: source/server.cpp.i
 
 # target to preprocess a source file
 source/server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/source/server.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange.dir/build.make CMakeFiles/exchange.dir/source/server.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/source/server.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/source/server.cpp.i
 .PHONY : source/server.cpp.i
 
 source/server.s: source/server.cpp.s
@@ -778,8 +778,8 @@ source/server.s: source/server.cpp.s
 
 # target to generate assembly for a file
 source/server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/restq.dir/build.make CMakeFiles/restq.dir/source/server.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exchange.dir/build.make CMakeFiles/exchange.dir/source/server.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/autocomplete.dir/build.make CMakeFiles/autocomplete.dir/source/server.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/source/server.cpp.s
 .PHONY : source/server.cpp.s
 
 # Help Target
@@ -794,9 +794,9 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... exchange"
+	@echo "... autocomplete"
 	@echo "... restbed"
-	@echo "... restq"
+	@echo "... server"
 	@echo "... dependency/load/osx/cpu.o"
 	@echo "... dependency/load/osx/cpu.i"
 	@echo "... dependency/load/osx/cpu.s"

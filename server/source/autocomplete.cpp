@@ -2,19 +2,15 @@
 
 using namespace std;
 
-// A node of the data trie
 Node::Node(char c) : character(c), isEnd(false), counter(0) {}
 
-// The trie has at least the root node.
-// The root node does not store any character
+// The trie has at least the root node. The root node has no char
 Trie::Trie() : rootNode('\0') {}
 
-// Insert a word data into the trie
 void Trie::insert(string word)
 {
     Node *node = &rootNode;
 
-    // Loop each character of word
     for (basic_string<char>::size_type i = 0; i < word.length(); i++)
     {
         char c = word[i];
@@ -31,7 +27,7 @@ void Trie::insert(string word)
         }
     }
 
-    // End of word. Increment counter
+    // End of word
     node->isEnd = true;
     node->counter += 1;
 }
@@ -54,7 +50,6 @@ void Trie::dfs(Node *node, string prefix)
     }
 }
 
-// Alphabetically sort the output of a trie query
 bool compareFunction(pair<string, int> a, pair<string, int> b)
 {
     return a.first < b.first;
@@ -63,7 +58,7 @@ bool compareFunction(pair<string, int> a, pair<string, int> b)
 // Given an input (a prefix), retrieve all words stored in
 // the trie with that prefix, sort the words by the number of
 // times they have been inserted
-vector<pair<string, int>> Trie::query(string word)
+vector<pair<string, int>> Trie::query(string word, int outputSize)
 {
     Node *node = &rootNode;
 
@@ -88,7 +83,7 @@ vector<pair<string, int>> Trie::query(string word)
 
     // sort the output
     sort(output.begin(), output.end(), compareFunction);
-    vector<pair<string, int>> reducedSize(output.begin(), output.begin() + 10);
+    vector<pair<string, int>> reducedSize(output.begin(), output.begin() + outputSize);
 
     output.clear();
 
