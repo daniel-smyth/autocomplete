@@ -4,29 +4,29 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/c-cpp/gcc
 
 trigger:
-- main
+  - main
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: 'cmake .'
+  - script: 'cmake'
 
-- script: |
-    make
-  displayName: 'make'
-#variables:
-#  system.debug: 'true'
+  - script: |
+      make
+    displayName: 'make'
+  #variables:
+  #  system.debug: 'true'
 
-- task: CopyFiles@2
-  displayName: 'Copy artifacts'
-  inputs:
-    contents: '**/build'
-    targetFolder: '$(build.artifactStagingDirectory)'
+  - task: CopyFiles@2
+    displayName: 'Copy artifacts'
+    inputs:
+      contents: '**/build'
+      targetFolder: '$(build.artifactStagingDirectory)'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish artifacts'
-  inputs:
-    pathToPublish: '$(build.artifactStagingDirectory)'
-    artifactName: 'artifact'
-    artifactType: 'container'
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish artifacts'
+    inputs:
+      pathToPublish: '$(build.artifactStagingDirectory)'
+      artifactName: 'artifact'
+      artifactType: 'container'
