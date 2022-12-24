@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - script: 'cd server cmake .'
+  - script: 'cd server && cmake .'
 
   - script: |
       make
