@@ -17,7 +17,7 @@ steps:
     displayName: 'CMake'
 
   - script: |
-      'make'
+      'cd server && make'
     displayName: 'make'
 
   - task: CopyFiles@2
