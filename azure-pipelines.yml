@@ -13,10 +13,11 @@ steps:
   - checkout: self
     submodules: true
 
-  - script: 'cmake .'
+  - script: 'cd server && cmake .'
     displayName: 'CMake'
 
   - script: |
+      'cd server && make'
       'make'
     displayName: 'make'
 
