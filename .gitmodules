@@ -10,6 +10,6 @@
 [submodule "dependency/load"]
 	path = dependency/load
 	url = https://github.com/Corvusoft/mem-cpu-load-dependency
-# [submodule "server/dependency/nlohmanjson"]
-# 	path = server/dependency/nlohmanjson
-# 	url = https://github.com/Corvusoft/json-dependency.git
+[submodule "server/dependency/nlohmanjson"]
+	path = server/dependency/nlohmanjson
+	url = https://github.com/Corvusoft/json-dependency.git
