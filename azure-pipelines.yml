@@ -17,7 +17,7 @@ steps:
     displayName: 'CMake'
 
   - script: |
-      'cd server && make'
+      'pwd && cd server && pwd && make'
       'make'
     displayName: 'make'
 
