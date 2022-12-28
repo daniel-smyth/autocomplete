@@ -13,13 +13,11 @@ steps:
   - checkout: self
     submodules: true
 
-  - script: 'cd server && cmake .'
+  - script: 'cd server && cmake . && make'
     displayName: 'CMake'
 
-  - script: |
-      'pwd && cd server && pwd && make'
-      'make'
-    displayName: 'make'
+  - script: 'cd server/build && ./server'
+    displayName: 'Run server'
 
   - task: CopyFiles@2
     displayName: 'Copy artifacts'
